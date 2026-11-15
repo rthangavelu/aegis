@@ -1,0 +1,323 @@
+# MOCK DATA — human attestation questionnaire responses
+
+attestations:
+
+  # HUM-001: Human review for high-stakes decisions
+  - system_id: credit-scoring-v3
+    question_id: ATTEST-HUM-001
+    question: >
+      Does a human reviewer examine all model decisions that significantly affect
+      individuals before those decisions are communicated to them?
+    answer: true
+    evidence_uri: seed/documents/credit_scoring_v3_monitoring.md
+    answered_by: risk-lead@example.com
+    answered_at: "2026-10-15"
+    expires_days: 90
+
+  - system_id: resume-screener
+    question_id: ATTEST-HUM-001
+    question: >
+      Does a human reviewer examine all model decisions that significantly affect
+      individuals before those decisions are communicated to them?
+    answer: null
+    answered_by: null
+    answered_at: null
+    expires_days: 90
+
+  # HUM-002: Human escalation path for LLM
+  - system_id: support-chatbot
+    question_id: ATTEST-HUM-002
+    question: >
+      Is there a human escalation path available for all customer interactions,
+      and is it tested at least monthly?
+    answer: true
+    evidence_uri: seed/documents/support_chatbot_monitoring.md
+    answered_by: cx-lead@example.com
+    answered_at: "2026-10-20"
+    expires_days: 60
+
+  # GOV-003: Accountable owner designated
+  - system_id: credit-scoring-v3
+    question_id: ATTEST-GOV-003
+    question: >
+      Has an accountable owner been formally designated for this AI system,
+      and have they accepted responsibility in writing?
+    answer: true
+    evidence_uri: seed/documents/credit_scoring_v3_model_card.md
+    answered_by: risk-lead@example.com
+    answered_at: "2026-09-18"
+    expires_days: 365
+
+  - system_id: resume-screener
+    question_id: ATTEST-GOV-003
+    question: >
+      Has an accountable owner been formally designated for this AI system,
+      and have they accepted responsibility in writing?
+    answer: null
+    answered_by: null
+    answered_at: null
+    expires_days: 365
+
+  # TRAN-002: Users informed of AI
+  - system_id: credit-scoring-v3
+    question_id: ATTEST-TRAN-002
+    question: >
+      Are users clearly informed that they are interacting with or subject to
+      decisions from an AI system?
+    answer: true
+    evidence_uri: seed/documents/credit_scoring_v3_transparency.md
+    answered_by: risk-lead@example.com
+    answered_at: "2026-10-01"
+    expires_days: 365
+
+  - system_id: support-chatbot
+    question_id: ATTEST-TRAN-002
+    question: >
+      Are users clearly informed that they are interacting with or subject to
+      decisions from an AI system?
+    answer: true
+    evidence_uri: seed/documents/support_chatbot_model_card.md
+    answered_by: cx-lead@example.com
+    answered_at: "2026-10-20"
+    expires_days: 365
+
+  - system_id: resume-screener
+    question_id: ATTEST-TRAN-002
+    question: >
+      Are users clearly informed that they are interacting with or subject to
+      decisions from an AI system?
+    answer: null
+    answered_by: null
+    answered_at: null
+    expires_days: 365
+
+  # PRIV-002: PII minimization confirmed
+  - system_id: credit-scoring-v3
+    question_id: ATTEST-PRIV-002
+    question: >
+      Has the training dataset been reviewed for PII minimization?
+    answer: true
+    evidence_uri: seed/documents/credit_scoring_v3_dpa.md
+    answered_by: dpo@example.com
+    answered_at: "2026-09-01"
+    expires_days: 365
+
+  - system_id: support-chatbot
+    question_id: ATTEST-PRIV-002
+    question: >
+      Has the training dataset been reviewed for PII minimization?
+    answer: true
+    evidence_uri: seed/documents/support_chatbot_dpa.md
+    answered_by: dpo@example.com
+    answered_at: "2026-08-15"
+    expires_days: 365
+
+  - system_id: resume-screener
+    question_id: ATTEST-PRIV-002
+    question: >
+      Has the training dataset been reviewed for PII minimization?
+    answer: null
+    answered_by: null
+    answered_at: null
+    expires_days: 365
+
+  # SAFE-003: Incident response plan
+  - system_id: credit-scoring-v3
+    question_id: ATTEST-SAFE-003
+    question: >
+      Does a documented incident response plan exist and has it been tested?
+    answer: true
+    evidence_uri: seed/documents/credit_scoring_v3_risk_assessment.md
+    answered_by: security-lead@example.com
+    answered_at: "2026-09-15"
+    expires_days: 365
+
+  - system_id: support-chatbot
+    question_id: ATTEST-SAFE-003
+    question: >
+      Does a documented incident response plan exist and has it been tested?
+    answer: true
+    evidence_uri: seed/documents/support_chatbot_model_card.md
+    answered_by: cx-lead@example.com
+    answered_at: "2026-08-20"
+    expires_days: 365
+
+  - system_id: resume-screener
+    question_id: ATTEST-SAFE-003
+    question: >
+      Does a documented incident response plan exist and has it been tested?
+    answer: null
+    answered_by: null
+    answered_at: null
+    expires_days: 365
+
+  # REL-003: Rollback procedure tested
+  - system_id: credit-scoring-v3
+    question_id: ATTEST-REL-003
+    question: >
+      Has the rollback procedure been tested in the last 12 months?
+    answer: true
+    evidence_uri: seed/documents/credit_scoring_v3_monitoring.md
+    answered_by: ml-lead@example.com
+    answered_at: "2026-10-05"
+    expires_days: 365
+
+  - system_id: support-chatbot
+    question_id: ATTEST-REL-003
+    question: >
+      Has the rollback procedure been tested in the last 12 months?
+    answer: null
+    answered_by: null
+    answered_at: null
+    expires_days: 365
+
+  - system_id: resume-screener
+    question_id: ATTEST-REL-003
+    question: >
+      Has the rollback procedure been tested in the last 12 months?
+    answer: null
+    answered_by: null
+    answered_at: null
+    expires_days: 365
+
+  # HUM-004: Appeal and recourse process
+  - system_id: credit-scoring-v3
+    question_id: ATTEST-HUM-004
+    question: >
+      Is there a documented and accessible process for individuals to contest or
+      appeal AI-driven decisions that significantly affect them? Is the appeal
+      reviewed by a human independent of the AI system, and is the process
+      communicated to affected individuals at the point of decision?
+    answer: true
+    evidence_uri: seed/documents/credit_scoring_v3_monitoring.md
+    answered_by: risk-lead@example.com
+    answered_at: "2026-10-15"
+    expires_days: 180
+
+  - system_id: resume-screener
+    question_id: ATTEST-HUM-004
+    question: >
+      Is there a documented and accessible process for individuals to contest or
+      appeal AI-driven decisions that significantly affect them? Is the appeal
+      reviewed by a human independent of the AI system, and is the process
+      communicated to affected individuals at the point of decision?
+    answer: null
+    answered_by: null
+    answered_at: null
+    expires_days: 180
+
+  # PRIV-005: Lawful basis for data processing
+  - system_id: credit-scoring-v3
+    question_id: ATTEST-PRIV-005
+    question: >
+      Has the lawful basis for processing personal data in this AI system been
+      documented (e.g. consent, legitimate interest, legal obligation)? Is it
+      current, reviewed in the last 12 months, and recorded in the Data Processing
+      Agreement or a separate legal basis register?
+    answer: true
+    evidence_uri: seed/documents/credit_scoring_v3_dpa.md
+    answered_by: dpo@example.com
+    answered_at: "2026-09-01"
+    expires_days: 365
+
+  - system_id: support-chatbot
+    question_id: ATTEST-PRIV-005
+    question: >
+      Has the lawful basis for processing personal data in this AI system been
+      documented (e.g. consent, legitimate interest, legal obligation)? Is it
+      current, reviewed in the last 12 months, and recorded in the Data Processing
+      Agreement or a separate legal basis register?
+    answer: true
+    evidence_uri: seed/documents/support_chatbot_dpa.md
+    answered_by: dpo@example.com
+    answered_at: "2026-08-15"
+    expires_days: 365
+
+  - system_id: resume-screener
+    question_id: ATTEST-PRIV-005
+    question: >
+      Has the lawful basis for processing personal data in this AI system been
+      documented (e.g. consent, legitimate interest, legal obligation)? Is it
+      current, reviewed in the last 12 months, and recorded in the Data Processing
+      Agreement or a separate legal basis register?
+    answer: null
+    answered_by: null
+    answered_at: null
+    expires_days: 365
+
+  # PRIV-006: Right to erasure process
+  - system_id: credit-scoring-v3
+    question_id: ATTEST-PRIV-006
+    question: >
+      Does a documented process exist to fulfil data subject deletion requests
+      within 30 days, including removal from training datasets and model retraining
+      where technically feasible? Has this process been tested in the last 12 months?
+    answer: true
+    evidence_uri: seed/documents/credit_scoring_v3_dpa.md
+    answered_by: dpo@example.com
+    answered_at: "2026-09-01"
+    expires_days: 365
+
+  - system_id: support-chatbot
+    question_id: ATTEST-PRIV-006
+    question: >
+      Does a documented process exist to fulfil data subject deletion requests
+      within 30 days, including removal from training datasets and model retraining
+      where technically feasible? Has this process been tested in the last 12 months?
+    answer: true
+    evidence_uri: seed/documents/support_chatbot_dpa.md
+    answered_by: dpo@example.com
+    answered_at: "2026-08-15"
+    expires_days: 365
+
+  - system_id: resume-screener
+    question_id: ATTEST-PRIV-006
+    question: >
+      Does a documented process exist to fulfil data subject deletion requests
+      within 30 days, including removal from training datasets and model retraining
+      where technically feasible? Has this process been tested in the last 12 months?
+    answer: null
+    answered_by: null
+    answered_at: null
+    expires_days: 365
+
+  # GENAI-006: Counterfactual bias testing
+  - system_id: support-chatbot
+    question_id: ATTEST-GENAI-006
+    question: >
+      Has the LLM been evaluated for counterfactual bias by swapping demographic markers?
+    answer: null
+    answered_by: null
+    answered_at: null
+    expires_days: 180
+
+  # CULT-001: AI ethics training
+  - system_id: credit-scoring-v3
+    question_id: ATTEST-CULT-001
+    question: >
+      Have all relevant staff completed the AI ethics training in the last 12 months?
+    answer: true
+    evidence_uri: seed/documents/ai_governance_resources.md
+    answered_by: ai-governance@example.com
+    answered_at: "2026-10-01"
+    expires_days: 365
+
+  - system_id: support-chatbot
+    question_id: ATTEST-CULT-001
+    question: >
+      Have all relevant staff completed the AI ethics training in the last 12 months?
+    answer: true
+    evidence_uri: seed/documents/ai_governance_resources.md
+    answered_by: ai-governance@example.com
+    answered_at: "2026-10-01"
+    expires_days: 365
+
+  - system_id: resume-screener
+    question_id: ATTEST-CULT-001
+    question: >
+      Have all relevant staff completed the AI ethics training in the last 12 months?
+    answer: true
+    evidence_uri: seed/documents/ai_governance_resources.md
+    answered_by: ai-governance@example.com
+    answered_at: "2026-10-01"
+    expires_days: 365

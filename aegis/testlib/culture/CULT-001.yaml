@@ -1,0 +1,27 @@
+id: CULT-001
+name: AI ethics training completion confirmed
+description: >
+  All staff who build, deploy, or use the AI system must have completed
+  the organization's AI ethics training in the last 12 months. Training
+  without verification does not constitute a governance control.
+pillar: Training & Culture
+type: attestation
+severity: high
+applies_to: {}
+mappings:
+  - framework: NIST_AI_RMF
+    ref: "GOVERN 3.1"
+  - framework: ISO_42001
+    ref: "Clause 7.2"
+check:
+  question_id: ATTEST-CULT-001
+  question: >
+    Have all staff responsible for building, deploying, or using this AI system
+    completed the organization's AI ethics and responsible AI training in the
+    last 12 months?
+  evidence_required: true
+  expires_days: 365
+frequency: annually
+remediation_id: REM-CULT-001
+owner_role: AI Governance Lead
+version: 1

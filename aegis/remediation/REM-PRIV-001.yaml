@@ -1,0 +1,13 @@
+id: REM-PRIV-001
+title: Establish data privacy controls for the AI system
+steps:
+  - "Engage the Data Protection Officer to draft and sign a data processing agreement (DPA)."
+  - "Conduct a data minimization review: identify and remove any personal data not needed for the task."
+  - "Store the DPA in the document repository with the required sections."
+  - "Re-run PRIV-001 and PRIV-002 to confirm the DPA exists and the PII minimization attestation is answered."
+effort: S
+owner_role: Data Protection Officer
+org_wide_fix: false
+resources:
+  - "EU GDPR Article 28 — Processor obligations"
+  - "ISO/IEC 27701 — Privacy information management"

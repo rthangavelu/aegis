@@ -1,0 +1,32 @@
+id: PRIV-004
+name: Training data provenance and lineage documented
+description: >
+  High-risk AI systems must have a documented data provenance record covering
+  the sources, collection method, labelling process, known biases and exclusions
+  applied to training data. Without this, organisations cannot demonstrate
+  compliance with EU AI Act Art. 10(3) or respond to regulatory enquiries.
+pillar: Privacy & Data
+type: evidence
+severity: high
+applies_to:
+  risk_tier: [high, unacceptable]
+mappings:
+  - framework: EU_AI_ACT
+    ref: "Art. 10(3)"
+  - framework: NIST_AI_RMF
+    ref: "GOVERN 6.1"
+  - framework: ISO_42001
+    ref: "Annex A.10"
+check:
+  source: "seed/documents/${system.id}_data_provenance.md"
+  rules:
+    exists: true
+    max_age_days: 365
+    required_sections:
+      - "Data sources"
+      - "Collection method"
+      - "Known biases"
+frequency: annually
+remediation_id: REM-PRIV-002
+owner_role: Data Protection Officer
+version: 1

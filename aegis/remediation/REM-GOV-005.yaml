@@ -1,0 +1,26 @@
+id: REM-GOV-005
+title: Complete third-party and supply chain AI risk review
+steps:
+  - "Identify all third-party components: list every external model, API, dataset, cloud service and
+     labelling vendor used in the AI system's training and inference pipeline."
+  - "Obtain or request vendor documentation: model cards, data cards, SOC 2 / ISO 27001 certificates,
+     published bias and fairness evaluations, incident history. Flag any component where documentation
+     is unavailable — that itself is a risk finding."
+  - "Complete a vendor assessment for each significant third party: (a) fitness for purpose, (b) data
+     protection obligations, (c) security posture, (d) business continuity, (e) regulatory compliance
+     (EU AI Act Art. 25 deployer obligations). Score each component low / medium / high risk."
+  - "Draft contractual controls for high-risk vendors: data processing agreements, right-to-audit clauses,
+     incident notification SLAs, model change notification requirements. Obtain legal sign-off."
+  - "Define an ongoing monitoring plan: quarterly check-ins for critical vendors, automated alerts on
+     published CVEs for open-source components (Dependabot / OSV), annual re-assessment gate."
+  - "Write the supply chain review document at seed/documents/<system_id>_supply_chain.md using the
+     required sections (Vendor assessment, Contractual controls, Ongoing monitoring) so GOV-005 passes."
+  - "Have the Risk Officer review and sign the document. Store the signed version in the document
+     management system and update the evidence link in the attestation register."
+effort: L
+owner_role: Risk Officer
+org_wide_fix: false
+resources:
+  - "EU AI Act Arts. 25-28 — obligations of deployers and importers"
+  - "NIST AI RMF — GOVERN 1.6 AI risk in supply chains"
+  - "ISO/IEC 42001 Annex A.7 — third-party and supply chain controls"

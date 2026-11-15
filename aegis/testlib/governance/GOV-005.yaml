@@ -1,0 +1,33 @@
+id: GOV-005
+name: Third-party and supply chain AI risk review completed
+description: >
+  High-risk AI systems that rely on third-party models, APIs, datasets or
+  infrastructure must have a documented supply chain risk review. This covers
+  vendor due diligence, contractual controls, model cards for base models, and
+  an ongoing monitoring plan for third-party components. EU AI Act Arts. 25-28
+  place explicit obligations on deployers when using third-party high-risk AI.
+pillar: Governance & Accountability
+type: evidence
+severity: high
+applies_to:
+  risk_tier: [high, unacceptable]
+mappings:
+  - framework: EU_AI_ACT
+    ref: "Art. 25"
+  - framework: NIST_AI_RMF
+    ref: "GOVERN 1.6"
+  - framework: ISO_42001
+    ref: "Annex A.7"
+check:
+  source: "seed/documents/${system.id}_supply_chain.md"
+  rules:
+    exists: true
+    max_age_days: 365
+    required_sections:
+      - "Vendor assessment"
+      - "Contractual controls"
+      - "Ongoing monitoring"
+frequency: annually
+remediation_id: REM-GOV-005
+owner_role: Risk Officer
+version: 1

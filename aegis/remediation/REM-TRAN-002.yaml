@@ -1,0 +1,27 @@
+id: REM-TRAN-002
+title: Document, evaluate and publish model explainability method
+steps:
+  - "Select an explainability approach appropriate to the model type and decision context:
+     SHAP (global + local, works with most sklearn/XGBoost/neural net models),
+     LIME (local, model-agnostic), or counterfactual explanations (useful for recourse).
+     For transformer-based models consider attention attribution or integrated gradients."
+  - "Implement the chosen method: fit a SHAP Explainer (TreeExplainer for tree models,
+     KernelExplainer as fallback), generate a summary plot of global feature importance, and
+     produce at least 5 representative local explanations (one per predicted class if multi-class)."
+  - "Evaluate the method's fidelity: measure faithfulness (e.g. sufficiency score or infidelity metric),
+     stability (run the explainer on the same instance twice with different random seeds — results should
+     be near-identical), and human-intelligibility (ask a domain expert to rate 10 explanations 1-5)."
+  - "Document limitations: list any known failure modes (e.g. SHAP instability on correlated features,
+     LIME sensitivity to kernel bandwidth), and state which model behaviours the method does NOT cover."
+  - "Write the explainability document at seed/documents/<system_id>_explainability.md with the required
+     sections: Explanation method, Method evaluation, Example explanations, Limitations."
+  - "Publish a summary of the method in the user-facing transparency notice (or model card) so affected
+     individuals can understand the factors that influenced their outcome."
+  - "Re-run TRAN-004 to confirm the document passes the section and age checks."
+effort: M
+owner_role: ML Lead
+org_wide_fix: false
+resources:
+  - "SHAP library: https://shap.readthedocs.io"
+  - "EU AI Act Annex IV — technical documentation requirements"
+  - "NIST AI RMF — MEASURE 2.13 AI output trustworthiness evaluation"

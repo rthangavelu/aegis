@@ -1,0 +1,25 @@
+id: CULT-002
+name: AI governance policy acknowledged by relevant teams
+description: >
+  Relevant teams must have acknowledged the organization's AI governance
+  policy at least annually. Unacknowledged policies are not enforceable
+  and cannot constitute a governance control.
+pillar: Training & Culture
+type: process
+severity: medium
+applies_to: {}
+mappings:
+  - framework: NIST_AI_RMF
+    ref: "GOVERN 1.4"
+  - framework: ISO_42001
+    ref: "Clause 5.2"
+inputs:
+  ticket_type: policy_acknowledgment
+check:
+  source: tickets
+  ticket_type: policy_acknowledgment
+  rule: "approval.status == 'acknowledged'"
+frequency: annually
+remediation_id: REM-CULT-001
+owner_role: AI Governance Lead
+version: 1

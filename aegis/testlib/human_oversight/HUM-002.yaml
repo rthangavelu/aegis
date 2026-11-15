@@ -1,0 +1,28 @@
+id: HUM-002
+name: Human escalation path available for LLM interactions
+description: >
+  Limited-risk LLM systems deployed in customer-facing contexts must provide
+  a clear and accessible path for users to escalate to a human agent.
+  The escalation path must be tested regularly to confirm it functions correctly.
+pillar: Human Oversight
+type: attestation
+severity: high
+applies_to:
+  risk_tier: [limited]
+  model_type: [llm]
+mappings:
+  - framework: EU_AI_ACT
+    ref: "Art. 50"
+  - framework: NIST_AI_RMF
+    ref: "GOVERN 5.2"
+check:
+  question_id: ATTEST-HUM-002
+  question: >
+    Is there a human escalation path available for all customer interactions,
+    and is it tested at least monthly?
+  evidence_required: true
+  expires_days: 60
+frequency: monthly
+remediation_id: REM-HUM-001
+owner_role: CX Lead
+version: 1

@@ -1,0 +1,28 @@
+id: REM-GENAI-002
+title: Publish GPAI copyright policy and training data summary
+steps:
+  - "Identify whether the AI system is a GPAI model or uses one: check if the system generates text,
+     images, code, audio or video at scale. If using a third-party foundation model (GPT-4, Claude,
+     Mistral, etc.) the EU AI Act Art. 53 obligations apply to the provider, but the deployer must
+     document which model is used and reference its published policy."
+  - "If operating as a GPAI provider (fine-tuning or deploying own base model): draft a copyright policy
+     covering (a) which content categories were used in pre-training, (b) the opt-out mechanism applied
+     (e.g. robots.txt respect, C4-cleaned corpus), and (c) how rights-holder opt-out requests are handled."
+  - "Write a training data summary: list the dataset names, their approximate sizes, content types
+     (web text, books, code, etc.), the date range of data collected, and any known licence types
+     (Creative Commons, permissive open-source, proprietary). Flag datasets where provenance is unclear."
+  - "If using a third-party GPAI model: obtain the provider's published copyright policy and training
+     data summary (most major providers publish these), link to them from your own policy, and confirm
+     your usage terms permit commercial deployment."
+  - "Write the GPAI policy document at seed/documents/<system_id>_gpai_policy.md with sections:
+     Copyright policy, Training data summary. Have Legal review and sign off."
+  - "Publish the policy in a machine-readable and human-readable location accessible to regulators
+     (EU AI Office compliance portal once operational, or company transparency page)."
+  - "Re-run GENAI-007 to confirm the document passes section and age checks."
+effort: M
+owner_role: Legal
+org_wide_fix: false
+resources:
+  - "EU AI Act Art. 53 — obligations for GPAI model providers"
+  - "EU AI Office GPAI Code of Practice (draft)"
+  - "DSA / copyright guidance from national authorities"

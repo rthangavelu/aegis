@@ -1,0 +1,26 @@
+id: TRAN-003
+name: Regulatory framework mapping documented in model card
+description: >
+  High-risk AI systems must document which regulatory clauses apply to them
+  and how the system meets those requirements. This is evidence of active
+  compliance management rather than passive box-ticking.
+pillar: Transparency
+type: evidence
+severity: medium
+applies_to:
+  risk_tier: [high, unacceptable]
+mappings:
+  - framework: EU_AI_ACT
+    ref: "Art. 11"
+  - framework: ISO_42001
+    ref: "Clause 4.2"
+check:
+  source: "seed/documents/${system.id}_model_card.md"
+  rules:
+    exists: true
+    required_sections:
+      - "Regulatory mapping"
+frequency: annually
+remediation_id: REM-TRAN-001
+owner_role: Compliance Lead
+version: 1

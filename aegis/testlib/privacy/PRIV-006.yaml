@@ -1,0 +1,32 @@
+id: PRIV-006
+name: Right to erasure and data deletion process confirmed
+description: >
+  Organisations must be able to fulfil data subject requests to erase personal
+  data used in AI training or inference within 30 days (GDPR Art. 17 / CCPA).
+  Where technically feasible, deletion includes removal from training datasets
+  and triggering model retraining. This check confirms that a process exists
+  and has been tested.
+pillar: Privacy & Data
+type: attestation
+severity: medium
+applies_to:
+  risk_tier: [high, limited, unacceptable]
+mappings:
+  - framework: EU_AI_ACT
+    ref: "Art. 10"
+  - framework: NIST_AI_RMF
+    ref: "GOVERN 6.2"
+  - framework: ISO_42001
+    ref: "Clause 8.4"
+check:
+  question_id: ATTEST-PRIV-006
+  question: >
+    Does a documented process exist to fulfil data subject deletion requests
+    within 30 days, including removal from training datasets and model retraining
+    where technically feasible? Has this process been tested in the last 12 months?
+  evidence_required: true
+  expires_days: 365
+frequency: annually
+remediation_id: REM-PRIV-002
+owner_role: Data Protection Officer
+version: 1

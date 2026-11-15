@@ -1,0 +1,34 @@
+id: PRIV-005
+name: Lawful basis for processing personal data documented and current
+description: >
+  Every AI system that processes personal data must have a documented lawful
+  basis under GDPR Art. 6 (or equivalent legislation). For sensitive data,
+  one of the conditions under Art. 9 must also be met. The lawful basis must
+  be reviewed annually or when processing purposes change. EU AI Act Art. 10(5)
+  additionally requires that any special category data used for bias monitoring
+  is covered by an appropriate legal basis.
+pillar: Privacy & Data
+type: attestation
+severity: high
+applies_to:
+  risk_tier: [high, limited, unacceptable]
+mappings:
+  - framework: EU_AI_ACT
+    ref: "Art. 10(5)"
+  - framework: NIST_AI_RMF
+    ref: "GOVERN 6.1"
+  - framework: ISO_42001
+    ref: "Clause 8.4"
+check:
+  question_id: ATTEST-PRIV-005
+  question: >
+    Has the lawful basis for processing personal data in this AI system been
+    documented (e.g. consent, legitimate interest, legal obligation)? Is it
+    current, reviewed in the last 12 months, and recorded in the Data Processing
+    Agreement or a separate legal basis register?
+  evidence_required: true
+  expires_days: 365
+frequency: annually
+remediation_id: REM-PRIV-002
+owner_role: Data Protection Officer
+version: 1

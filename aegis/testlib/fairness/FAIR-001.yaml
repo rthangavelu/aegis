@@ -1,0 +1,33 @@
+id: FAIR-001
+name: Disparate impact on protected attributes
+description: >
+  The selection rate of each protected group must be at least 80% of the
+  selection rate of the most-favoured group (four-fifths rule). A ratio below
+  0.8 indicates potential unlawful discrimination in a high-risk system.
+pillar: Fairness
+type: technical
+severity: critical
+applies_to:
+  risk_tier: [high, unacceptable]
+  model_type: [classification]
+mappings:
+  - framework: NIST_AI_RMF
+    ref: "MEASURE 2.11"
+  - framework: ISO_42001
+    ref: "Clause 6.1.2"
+  - framework: EU_AI_ACT
+    ref: "Art. 10"
+inputs:
+  dataset: "${system.eval_dataset}"
+  protected_attributes: [gender, age_band]
+check:
+  metric: disparate_impact_ratio
+  aggregate: min
+  threshold:
+    pass: ">= 0.8"
+    warn: ">= 0.7"
+  threshold_source: "Four-fifths rule (US EEOC)"
+frequency: nightly
+remediation_id: REM-FAIR-001
+owner_role: ML Lead
+version: 1

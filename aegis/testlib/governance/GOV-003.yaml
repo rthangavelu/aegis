@@ -1,0 +1,29 @@
+id: GOV-003
+name: Accountable owner designated for high-risk AI system
+description: >
+  Every high-risk AI system must have a named accountable owner who has
+  accepted responsibility for the system's compliance and outcomes.
+  Unowned systems cannot be governed or held accountable.
+pillar: Governance & Accountability
+type: attestation
+severity: high
+applies_to:
+  risk_tier: [high, unacceptable]
+mappings:
+  - framework: NIST_AI_RMF
+    ref: "GOVERN 1.2"
+  - framework: ISO_42001
+    ref: "Clause 5.3"
+  - framework: EU_AI_ACT
+    ref: "Art. 17"
+check:
+  question_id: ATTEST-GOV-003
+  question: >
+    Has an accountable owner been formally designated for this AI system,
+    and have they acknowledged their responsibilities in writing?
+  evidence_required: true
+  expires_days: 365
+frequency: annually
+remediation_id: REM-GOV-001
+owner_role: AI Governance Lead
+version: 1

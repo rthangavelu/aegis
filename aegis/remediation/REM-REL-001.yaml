@@ -1,0 +1,15 @@
+id: REM-REL-001
+title: Implement model monitoring and operational resilience controls
+steps:
+  - "Set up a model monitoring dashboard tracking: input drift, output drift, prediction distribution, and latency."
+  - "Configure alerts for drift thresholds and downtime exceeding the SLA."
+  - "Document the monitoring setup in a monitoring document with the required sections."
+  - "Define and document the retrain trigger conditions and approval process."
+  - "Test and document the rollback procedure; confirm it meets the defined RTO."
+  - "Re-run REL-001, REL-002, and REL-003 to confirm controls are in place."
+effort: M
+owner_role: ML Engineer
+org_wide_fix: false
+resources:
+  - "Evidently AI — open-source ML monitoring: https://www.evidentlyai.com"
+  - "NIST AI RMF MANAGE 4 playbook"

@@ -1,0 +1,14 @@
+id: REM-GOV-004
+title: Complete AI risk assessment for the system
+steps:
+  - "Use the organization's risk assessment template to identify and document risks."
+  - "Assess the likelihood and impact of each risk. Prioritize by risk score."
+  - "Document mitigations for each risk and assign owners."
+  - "Obtain Risk Officer sign-off and store the completed assessment in the document repository."
+  - "Re-run GOV-004 to confirm the document exists, is current, and has the required sections."
+effort: M
+owner_role: Risk Officer
+org_wide_fix: false
+resources:
+  - "ISO/IEC 23894:2023 — AI Risk Management"
+  - "NIST AI RMF MAP Function playbook"

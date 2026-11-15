@@ -1,0 +1,28 @@
+id: GENAI-006
+name: Counterfactual bias testing performed
+description: >
+  The LLM must have been tested for counterfactual bias by swapping names,
+  genders, or demographic markers in prompts and verifying that outputs do
+  not change materially. This detects bias encoded in the model's weights.
+pillar: GenAI
+type: attestation
+severity: medium
+applies_to:
+  model_type: [llm]
+mappings:
+  - framework: NIST_AI_RMF
+    ref: "MEASURE 2.11"
+  - framework: EU_AI_ACT
+    ref: "Art. 10(2)(f)"
+check:
+  question_id: ATTEST-GENAI-006
+  question: >
+    Has the LLM been evaluated for counterfactual bias by systematically
+    swapping demographic markers (names, genders, nationalities) in prompts
+    and measuring output differences? Were results documented and acted upon?
+  evidence_required: true
+  expires_days: 180
+frequency: semi-annually
+remediation_id: REM-GENAI-001
+owner_role: ML Lead
+version: 1

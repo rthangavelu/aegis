@@ -1,0 +1,27 @@
+id: CULT-003
+name: AI governance resources available to all staff
+description: >
+  The organization must maintain and publish accessible AI governance
+  resources including the policy, guidelines, training materials, and
+  escalation paths. Staff cannot act responsibly without accessible guidance.
+pillar: Training & Culture
+type: evidence
+severity: low
+applies_to: {}
+mappings:
+  - framework: NIST_AI_RMF
+    ref: "GOVERN 3.2"
+  - framework: ISO_42001
+    ref: "Clause 7.3"
+check:
+  source: "seed/documents/ai_governance_resources.md"
+  rules:
+    exists: true
+    max_age_days: 365
+    required_sections:
+      - "Policy"
+      - "Contact"
+frequency: annually
+remediation_id: REM-CULT-001
+owner_role: AI Governance Lead
+version: 1

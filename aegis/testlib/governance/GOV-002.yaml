@@ -1,0 +1,32 @@
+id: GOV-002
+name: Model card present and current
+description: >
+  Every production AI system must have a model card that is no more than
+  180 days old and contains the required sections. The model card is the
+  primary artefact establishing transparency with users and regulators.
+pillar: Governance & Accountability
+type: evidence
+severity: high
+applies_to:
+  risk_tier: [high, limited, unacceptable]
+  lifecycle_stage: [production]
+mappings:
+  - framework: NIST_AI_RMF
+    ref: "GOVERN 1.7"
+  - framework: ISO_42001
+    ref: "Clause 7.5"
+  - framework: EU_AI_ACT
+    ref: "Art. 13"
+check:
+  source: "seed/documents/${system.id}_model_card.md"
+  rules:
+    exists: true
+    max_age_days: 180
+    required_sections:
+      - "Model details"
+      - "Intended use"
+      - "Known limitations"
+frequency: weekly
+remediation_id: REM-GOV-002
+owner_role: System Owner
+version: 1

@@ -1,0 +1,16 @@
+id: REM-FAIR-001
+title: Reduce disparate impact across protected groups
+steps:
+  - "Re-examine the training dataset for under-representation of protected groups.
+     Use fairlearn.reductions.ExponentiatedGradient or similar to add fairness constraints during training."
+  - "Apply post-processing calibration (e.g. ThresholdOptimizer in fairlearn) to equalise selection rates
+     across protected groups while minimising accuracy loss."
+  - "Collect additional labelled data for under-represented groups to reduce data imbalance."
+  - "Re-run FAIR-001 and FAIR-002 to confirm disparate impact ratio >= 0.8 and equal opportunity difference <= 0.1."
+  - "Document the mitigation approach in the model card and obtain ML Lead sign-off."
+effort: M
+owner_role: ML Lead
+org_wide_fix: false
+resources:
+  - "https://fairlearn.org/v0.10/user_guide/mitigation/index.html"
+  - "NIST AI RMF Playbook — MEASURE 2.11 suggested actions"

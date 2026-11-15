@@ -1,0 +1,120 @@
+# MOCK DATA — approval and change management tickets
+
+tickets:
+
+  # Deployment approvals
+  - id: TICK-001
+    system_id: credit-scoring-v3
+    type: deployment_approval
+    ticket_type: deployment_approval
+    title: Deploy credit-scoring-v3 to production
+    approver: chief-risk-officer@example.com
+    approval_date: "2026-09-15"
+    deploy_date: "2026-09-18"
+    status: approved
+
+  - id: TICK-002
+    system_id: resume-screener
+    type: deployment_approval
+    ticket_type: deployment_approval
+    title: Deploy resume-screener v2 to production
+    approver: null
+    approval_date: null
+    deploy_date: "2026-10-01"
+    status: missing
+
+  - id: TICK-003
+    system_id: support-chatbot
+    type: deployment_approval
+    ticket_type: deployment_approval
+    title: Deploy support-chatbot to production
+    approver: vp-cx@example.com
+    approval_date: "2026-08-20"
+    deploy_date: "2026-08-22"
+    status: approved
+
+  # Security risk assessments
+  - id: TICK-006
+    system_id: credit-scoring-v3
+    type: security_risk_assessment
+    ticket_type: security_risk_assessment
+    title: Security risk assessment — credit-scoring-v3
+    approver: security-lead@example.com
+    approval_date: "2026-09-10"
+    deploy_date: null
+    status: approved
+
+  # Bias / fairness reviews
+  - id: TICK-004
+    system_id: credit-scoring-v3
+    type: bias_review
+    ticket_type: bias_review
+    title: Quarterly bias review — credit-scoring-v3
+    approver: ml-lead@example.com
+    approval_date: "2026-10-01"
+    deploy_date: null
+    status: approved
+
+  - id: TICK-005
+    system_id: resume-screener
+    type: bias_review
+    ticket_type: bias_review
+    title: Quarterly bias review — resume-screener
+    approver: null
+    approval_date: null
+    deploy_date: null
+    status: missing
+
+  # Retrain approvals
+  - id: TICK-007
+    system_id: credit-scoring-v3
+    type: retrain_approval
+    ticket_type: retrain_approval
+    title: Retrain credit-scoring-v3 on 2026-Q3 data
+    approver: ml-lead@example.com
+    approval_date: "2026-10-05"
+    deploy_date: null
+    status: approved
+
+  # Human override log
+  - id: TICK-008
+    system_id: credit-scoring-v3
+    type: human_override_log
+    ticket_type: human_override_log
+    title: Monthly human override log — credit-scoring-v3 — October 2026
+    approver: risk-lead@example.com
+    approval_date: "2026-11-01"
+    deploy_date: null
+    status: approved
+
+  # Post-market surveillance reviews (SAFE-004)
+  - id: TICK-010
+    system_id: credit-scoring-v3
+    type: post_market_surveillance_review
+    ticket_type: post_market_surveillance_review
+    title: Q3 2026 post-market surveillance review — credit-scoring-v3
+    approver: risk-lead@example.com
+    approval_date: "2026-10-10"
+    deploy_date: null
+    status: approved
+
+  - id: TICK-011
+    system_id: resume-screener
+    type: post_market_surveillance_review
+    ticket_type: post_market_surveillance_review
+    title: Q3 2026 post-market surveillance review — resume-screener
+    approver: null
+    approval_date: null
+    deploy_date: null
+    status: missing
+
+  # Org-wide policy acknowledgment
+  - id: TICK-009
+    system_id: org
+    type: policy_acknowledgment
+    ticket_type: policy_acknowledgment
+    title: AI Governance Policy acknowledgment — Q4 2026
+    approver: ai-governance@example.com
+    approval_date: "2026-10-01"
+    deploy_date: null
+    status: acknowledged

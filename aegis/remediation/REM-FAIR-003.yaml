@@ -1,0 +1,12 @@
+id: REM-FAIR-003
+title: Improve model accuracy to meet reliability floor
+steps:
+  - "Audit the training data for label noise or class imbalance that may be depressing accuracy."
+  - "Tune the classification threshold using a held-out validation set to maximize balanced accuracy."
+  - "Evaluate whether feature engineering or a different model architecture would improve performance."
+  - "Re-run FAIR-003 to confirm accuracy_floor >= 0.75."
+effort: M
+owner_role: ML Lead
+org_wide_fix: false
+resources:
+  - "scikit-learn Model Evaluation: https://scikit-learn.org/stable/modules/model_evaluation.html"

@@ -1,0 +1,28 @@
+id: REM-HUM-002
+title: Implement appeal and recourse process for AI-driven decisions
+steps:
+  - "Define the scope: list every AI-driven decision that significantly affects individuals (credit denial,
+     job rejection, benefit reduction). For each, document the decision type, the affected population and
+     the regulatory deadline for appeal (default: 30 days under GDPR Art. 22)."
+  - "Design the appeal workflow: create a written procedure covering (a) how individuals are notified of
+     their right to appeal at the point of decision, (b) the channel for submitting an appeal (web form,
+     email, in-app), (c) how the appeal is routed to a human reviewer independent of the original AI output,
+     and (d) the target review SLA."
+  - "Assign a named role (e.g. Appeals Manager) with authority to overturn AI decisions and document the
+     criteria under which an override is appropriate."
+  - "Build or configure the intake system: a simple ticketing workflow (Jira Service Desk, Zendesk or
+     equivalent) with custom fields for AI system name, original decision, reason for appeal, reviewer name
+     and outcome."
+  - "Communicate the process to affected individuals: update privacy notices, decision letters and product
+     UI to include the appeal contact and deadline. Run a legal review of the wording."
+  - "Test the process end-to-end with at least two synthetic appeals before go-live. Confirm the reviewer
+     does not have access to the original AI score during the first read of the case."
+  - "Re-attest HUM-004 once the process is live. Provide evidence (SOP document + first completed appeal
+     ticket) to satisfy the evidence_required flag."
+effort: M
+owner_role: System Owner
+org_wide_fix: false
+resources:
+  - "EU AI Act Art. 14 — human oversight requirements"
+  - "GDPR Art. 22 — right not to be subject to solely automated decisions"
+  - "NIST AI RMF Playbook — GOVERN 5.1 suggested actions"

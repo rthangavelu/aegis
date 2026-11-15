@@ -1,0 +1,29 @@
+id: SAFE-001
+name: Security risk assessment completed before deployment
+description: >
+  A formal security risk assessment must be completed and approved before a
+  high-risk AI system is deployed to production. This includes threat modelling,
+  adversarial attack scenarios, and documented mitigations.
+pillar: Safety & Security
+type: process
+severity: critical
+applies_to:
+  risk_tier: [high, unacceptable]
+  lifecycle_stage: [production]
+mappings:
+  - framework: NIST_AI_RMF
+    ref: "MAP 5.2"
+  - framework: ISO_42001
+    ref: "Clause 6.1.2"
+  - framework: EU_AI_ACT
+    ref: "Art. 9"
+inputs:
+  ticket_type: security_risk_assessment
+check:
+  source: tickets
+  ticket_type: security_risk_assessment
+  rule: "approval.status == 'approved'"
+frequency: on_deploy
+remediation_id: REM-SAFE-001
+owner_role: Security Lead
+version: 1

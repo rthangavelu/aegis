@@ -1,0 +1,29 @@
+id: GOV-004
+name: AI risk assessment completed before production deployment
+description: >
+  Every high-risk AI system must have a completed risk assessment documenting
+  identified risks, their likelihood, impact, and mitigations before going live.
+pillar: Governance & Accountability
+type: evidence
+severity: high
+applies_to:
+  risk_tier: [high, unacceptable]
+mappings:
+  - framework: NIST_AI_RMF
+    ref: "MAP 1.1"
+  - framework: ISO_42001
+    ref: "Clause 6.1.2"
+  - framework: EU_AI_ACT
+    ref: "Art. 9"
+check:
+  source: "seed/documents/${system.id}_risk_assessment.md"
+  rules:
+    exists: true
+    max_age_days: 365
+    required_sections:
+      - "Risk identification"
+      - "Impact assessment"
+frequency: annually
+remediation_id: REM-GOV-004
+owner_role: Risk Officer
+version: 1

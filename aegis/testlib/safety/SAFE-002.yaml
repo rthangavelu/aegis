@@ -1,0 +1,30 @@
+id: SAFE-002
+name: Adversarial robustness testing documented
+description: >
+  The AI system must have documented adversarial robustness testing that covers
+  relevant attack scenarios such as data poisoning, model inversion, and
+  prompt injection (for LLMs). Results and mitigations must be recorded.
+pillar: Safety & Security
+type: evidence
+severity: high
+applies_to:
+  risk_tier: [high, limited, unacceptable]
+mappings:
+  - framework: NIST_AI_RMF
+    ref: "MEASURE 2.7"
+  - framework: ISO_42001
+    ref: "Clause 8.5"
+  - framework: EU_AI_ACT
+    ref: "Art. 15"
+check:
+  source: "seed/documents/${system.id}_adversarial_testing.md"
+  rules:
+    exists: true
+    max_age_days: 365
+    required_sections:
+      - "Attack scenarios"
+      - "Results"
+frequency: annually
+remediation_id: REM-SAFE-001
+owner_role: Security Lead
+version: 1

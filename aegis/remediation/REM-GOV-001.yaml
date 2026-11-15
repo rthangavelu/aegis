@@ -1,0 +1,14 @@
+id: REM-GOV-001
+title: Establish pre-deployment approval gate for high-risk AI systems
+steps:
+  - "Define an approval workflow in the ticketing system (Jira or ServiceNow) with a mandatory
+     'AI Governance Approval' stage that blocks deployment until the accountable owner signs off."
+  - "Assign an accountable owner for each high-risk AI system in the inventory."
+  - "Retroactively document approval decisions for systems already in production."
+  - "Re-run GOV-001 to confirm approval records exist and predate deployment dates."
+effort: S
+owner_role: AI Governance Lead
+org_wide_fix: true
+resources:
+  - "ISO/IEC 42001 Clause 5.3 — Organizational roles and responsibilities"
+  - "NIST AI RMF GOVERN 1.1 — Policies, processes, procedures are in place"

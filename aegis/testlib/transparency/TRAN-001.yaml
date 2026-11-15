@@ -1,0 +1,29 @@
+id: TRAN-001
+name: Decisions or outputs are explained to affected individuals
+description: >
+  Users or individuals affected by the AI system's outputs must be provided
+  with meaningful explanations of how decisions are made. This is a core
+  requirement under EU AI Act Art. 13 and aligns with NIST AI RMF GOVERN 4.2.
+pillar: Transparency
+type: evidence
+severity: high
+applies_to:
+  risk_tier: [high, limited, unacceptable]
+mappings:
+  - framework: NIST_AI_RMF
+    ref: "GOVERN 4.2"
+  - framework: EU_AI_ACT
+    ref: "Art. 13"
+  - framework: ISO_42001
+    ref: "Clause 7.3"
+check:
+  source: "seed/documents/${system.id}_transparency.md"
+  rules:
+    exists: true
+    max_age_days: 365
+    required_sections:
+      - "How decisions are explained"
+frequency: annually
+remediation_id: REM-TRAN-001
+owner_role: Product Owner
+version: 1

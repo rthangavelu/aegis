@@ -1,0 +1,32 @@
+id: HUM-004
+name: Appeal and recourse process for AI-affected individuals
+description: >
+  Individuals subject to significant AI-driven decisions must have access to a
+  documented, accessible process to contest or appeal those decisions. The appeal
+  must be reviewed by a human independent of the original AI output. This is an
+  explicit obligation under EU AI Act Art. 14 and aligns with GDPR Art. 22.
+pillar: Human Oversight
+type: attestation
+severity: critical
+applies_to:
+  risk_tier: [high, unacceptable]
+mappings:
+  - framework: EU_AI_ACT
+    ref: "Art. 14"
+  - framework: NIST_AI_RMF
+    ref: "GOVERN 5.1"
+  - framework: ISO_42001
+    ref: "Clause 8.6"
+check:
+  question_id: ATTEST-HUM-004
+  question: >
+    Is there a documented and accessible process for individuals to contest or
+    appeal AI-driven decisions that significantly affect them? Is the appeal
+    reviewed by a human independent of the AI system, and is the process
+    communicated to affected individuals at the point of decision?
+  evidence_required: true
+  expires_days: 180
+frequency: semi-annually
+remediation_id: REM-HUM-002
+owner_role: System Owner
+version: 1

@@ -1,0 +1,30 @@
+id: HUM-001
+name: Human review required for high-stakes decisions
+description: >
+  High-risk AI systems making decisions that significantly affect individuals
+  (employment, credit, healthcare) must have human review before those decisions
+  are communicated. Fully automated high-stakes decisions are prohibited under
+  EU AI Act Art. 14.
+pillar: Human Oversight
+type: attestation
+severity: critical
+applies_to:
+  risk_tier: [high, unacceptable]
+mappings:
+  - framework: EU_AI_ACT
+    ref: "Art. 14"
+  - framework: NIST_AI_RMF
+    ref: "GOVERN 5.1"
+  - framework: ISO_42001
+    ref: "Clause 8.6"
+check:
+  question_id: ATTEST-HUM-001
+  question: >
+    Does a human reviewer examine all model decisions that significantly affect
+    individuals before those decisions are communicated to them?
+  evidence_required: true
+  expires_days: 90
+frequency: quarterly
+remediation_id: REM-HUM-001
+owner_role: System Owner
+version: 1

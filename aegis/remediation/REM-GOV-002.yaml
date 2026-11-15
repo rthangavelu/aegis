@@ -1,0 +1,14 @@
+id: REM-GOV-002
+title: Create or refresh model card for the AI system
+steps:
+  - "Use the standard model card template (see resources) to document:
+     model details, intended use, training data, known limitations, and fairness evaluation."
+  - "Have the System Owner review and sign off the model card."
+  - "Store the model card in the designated document repository (seed/documents/ for the MVP)."
+  - "Re-run GOV-002 to confirm the model card exists, is current, and contains all required sections."
+effort: S
+owner_role: System Owner
+org_wide_fix: false
+resources:
+  - "EU AI Act Annex IV — Technical documentation requirements"
+  - "https://arxiv.org/abs/1810.03993 — Model Cards for Model Reporting (Mitchell et al.)"

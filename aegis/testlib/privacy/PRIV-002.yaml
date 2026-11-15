@@ -1,0 +1,28 @@
+id: PRIV-002
+name: PII minimization confirmed in training data
+description: >
+  The team responsible for the AI system must confirm that only the minimum
+  necessary personal data is used for training, and that sensitive attributes
+  not needed for the task have been removed or anonymized.
+pillar: Privacy & Data
+type: attestation
+severity: high
+applies_to:
+  risk_tier: [high, limited, unacceptable]
+mappings:
+  - framework: EU_AI_ACT
+    ref: "Art. 10(5)"
+  - framework: NIST_AI_RMF
+    ref: "GOVERN 6.2"
+check:
+  question_id: ATTEST-PRIV-002
+  question: >
+    Has the training dataset been reviewed to confirm that only the minimum
+    necessary personal data is used, and that unnecessary sensitive attributes
+    have been removed or anonymized?
+  evidence_required: true
+  expires_days: 365
+frequency: annually
+remediation_id: REM-PRIV-001
+owner_role: Data Protection Officer
+version: 1

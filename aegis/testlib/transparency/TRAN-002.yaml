@@ -1,0 +1,27 @@
+id: TRAN-002
+name: Users are informed they are interacting with an AI system
+description: >
+  Individuals must be clearly informed when they are interacting with or
+  subject to decisions from an AI system. Undisclosed AI use is prohibited
+  for high and limited risk systems under the EU AI Act.
+pillar: Transparency
+type: attestation
+severity: medium
+applies_to:
+  risk_tier: [high, limited, unacceptable]
+mappings:
+  - framework: EU_AI_ACT
+    ref: "Art. 50"
+  - framework: NIST_AI_RMF
+    ref: "GOVERN 4.1"
+check:
+  question_id: ATTEST-TRAN-002
+  question: >
+    Are users clearly and prominently informed that they are interacting with
+    or subject to decisions from an AI system, before or at the point of interaction?
+  evidence_required: true
+  expires_days: 365
+frequency: annually
+remediation_id: REM-TRAN-001
+owner_role: Product Owner
+version: 1

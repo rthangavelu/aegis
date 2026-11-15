@@ -1,0 +1,27 @@
+id: REL-003
+name: Rollback procedure tested and documented
+description: >
+  A rollback procedure must exist and must have been tested to verify that the
+  previous stable model version can be restored within a defined RTO. Untested
+  rollback procedures fail under pressure.
+pillar: Reliability
+type: attestation
+severity: medium
+applies_to:
+  risk_tier: [high, limited, unacceptable]
+mappings:
+  - framework: NIST_AI_RMF
+    ref: "MANAGE 4.2"
+  - framework: ISO_42001
+    ref: "Clause 10.1"
+check:
+  question_id: ATTEST-REL-003
+  question: >
+    Has the rollback procedure for this AI system been tested in the last
+    12 months and confirmed to work within the defined recovery time objective?
+  evidence_required: true
+  expires_days: 365
+frequency: annually
+remediation_id: REM-REL-001
+owner_role: ML Engineer
+version: 1

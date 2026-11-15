@@ -1,0 +1,36 @@
+id: FAIR-004
+name: False positive rate parity across protected groups
+description: >
+  Among individuals who should not be selected (true negatives), the rate of
+  incorrect positive predictions must not differ materially across protected
+  groups. A high FPR for one group means that group faces a disproportionate
+  burden of false accusations or rejections. FPR difference > 0.1 indicates
+  a significant fairness concern under NIST AI RMF MEASURE 2.11.
+pillar: Fairness
+type: technical
+severity: high
+applies_to:
+  risk_tier: [high, unacceptable]
+  model_type: [classification]
+mappings:
+  - framework: NIST_AI_RMF
+    ref: "MEASURE 2.11"
+  - framework: EU_AI_ACT
+    ref: "Art. 10(2)(f)"
+  - framework: ISO_42001
+    ref: "Clause 6.1.2"
+inputs:
+  dataset: "${system.eval_dataset}"
+  protected_attributes: [gender, age_band]
+  label_column: label
+check:
+  metric: fpr_difference
+  aggregate: max
+  threshold:
+    pass: "<= 0.05"
+    warn: "<= 0.10"
+  threshold_source: "Organizational choice — aligns with NIST AI RMF MEASURE 2.11 guidance"
+frequency: nightly
+remediation_id: REM-FAIR-001
+owner_role: ML Lead
+version: 1

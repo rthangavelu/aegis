@@ -1,0 +1,14 @@
+id: REM-CULT-001
+title: Establish AI ethics training and governance culture
+steps:
+  - "Develop or procure an AI ethics training course covering responsible AI, bias, privacy, and accountability."
+  - "Make training mandatory for all staff who build, deploy, or use AI systems, with annual recertification."
+  - "Publish the AI governance policy and obtain acknowledgment from all relevant teams."
+  - "Create and maintain a governance resources page with policy, guidelines, training links, and escalation contacts."
+  - "Re-run CULT-001, CULT-002, and CULT-003 to confirm controls are in place."
+effort: M
+owner_role: AI Governance Lead
+org_wide_fix: true
+resources:
+  - "Partnership on AI — Responsible AI training resources"
+  - "ISO/IEC 42001:2023 Clause 7.2 — Competence"

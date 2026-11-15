@@ -1,0 +1,28 @@
+id: SAFE-003
+name: Incident response plan in place for AI system failures
+description: >
+  A documented incident response plan must exist for each AI system, covering
+  detection, containment, remediation and notification procedures for failures
+  or misuse events. Without a plan, incident response is ad hoc and slow.
+pillar: Safety & Security
+type: attestation
+severity: medium
+applies_to:
+  risk_tier: [high, limited, unacceptable]
+mappings:
+  - framework: NIST_AI_RMF
+    ref: "RESPOND 1.1"
+  - framework: ISO_42001
+    ref: "Clause 10.2"
+check:
+  question_id: ATTEST-SAFE-003
+  question: >
+    Does a documented incident response plan exist for this AI system that
+    covers detection, containment, remediation and notification? Has it been
+    tested in the last 12 months?
+  evidence_required: true
+  expires_days: 365
+frequency: annually
+remediation_id: REM-SAFE-001
+owner_role: Security Lead
+version: 1

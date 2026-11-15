@@ -1,0 +1,33 @@
+id: TRAN-004
+name: Explainability method documented, evaluated and published
+description: >
+  High-risk AI systems must document the method used to explain individual
+  decisions (e.g. SHAP, LIME, counterfactual explanations), provide an evaluation
+  of that method's fidelity and limitations, and publish example explanations.
+  EU AI Act Annex IV requires technical documentation to describe interpretability
+  measures, and NIST MEASURE 2.13 requires evaluation of AI output trustworthiness.
+pillar: Transparency
+type: evidence
+severity: high
+applies_to:
+  risk_tier: [high, unacceptable]
+mappings:
+  - framework: EU_AI_ACT
+    ref: "Art. 13"
+  - framework: NIST_AI_RMF
+    ref: "MEASURE 2.13"
+  - framework: ISO_42001
+    ref: "Clause 7.3"
+check:
+  source: "seed/documents/${system.id}_explainability.md"
+  rules:
+    exists: true
+    max_age_days: 365
+    required_sections:
+      - "Explanation method"
+      - "Method evaluation"
+      - "Example explanations"
+frequency: annually
+remediation_id: REM-TRAN-002
+owner_role: ML Lead
+version: 1

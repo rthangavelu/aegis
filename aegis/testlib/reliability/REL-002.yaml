@@ -1,0 +1,27 @@
+id: REL-002
+name: Model retrain and update process documented and approved
+description: >
+  A defined and approved process must exist for retraining or updating the AI
+  system in response to drift, failures, or regulatory changes. Ad-hoc
+  retraining without governance creates untracked risk.
+pillar: Reliability
+type: process
+severity: high
+applies_to:
+  risk_tier: [high, unacceptable]
+  lifecycle_stage: [production]
+mappings:
+  - framework: NIST_AI_RMF
+    ref: "MANAGE 2.4"
+  - framework: ISO_42001
+    ref: "Clause 8.2"
+inputs:
+  ticket_type: retrain_approval
+check:
+  source: tickets
+  ticket_type: retrain_approval
+  rule: "approval.status == 'approved'"
+frequency: on_retrain
+remediation_id: REM-REL-001
+owner_role: ML Lead
+version: 1

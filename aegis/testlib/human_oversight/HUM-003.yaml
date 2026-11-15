@@ -1,0 +1,27 @@
+id: HUM-003
+name: Human override log exists and is maintained
+description: >
+  A log must exist recording all instances where a human reviewer overrode or
+  modified the AI system's recommendation. The log enables retrospective
+  audit and reveals systematic model errors that require retraining.
+pillar: Human Oversight
+type: process
+severity: medium
+applies_to:
+  risk_tier: [high, unacceptable]
+  lifecycle_stage: [production]
+mappings:
+  - framework: NIST_AI_RMF
+    ref: "MANAGE 1.3"
+  - framework: EU_AI_ACT
+    ref: "Art. 12"
+inputs:
+  ticket_type: human_override_log
+check:
+  source: tickets
+  ticket_type: human_override_log
+  rule: "approval.status == 'approved'"
+frequency: monthly
+remediation_id: REM-HUM-001
+owner_role: System Owner
+version: 1

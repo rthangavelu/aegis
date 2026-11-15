@@ -1,0 +1,44 @@
+# Aegis scoring configuration
+# INTENT.md section 8
+
+severity_weights:
+  critical: 4
+  high: 3
+  medium: 2
+  low: 1
+
+risk_tier_multipliers:
+  unacceptable: 2.0
+  high: 1.5
+  limited: 1.0
+  minimal: 0.5
+
+# Points: pass=1, warn=0.5, fail=0, na/pending=excluded, error=fail+flagged
+status_points:
+  pass: 1.0
+  warn: 0.5
+  fail: 0.0
+  error: 0.0
+
+rag_bands:
+  green: 80
+  amber: 60
+
+maturity_bands:
+  - { min: 0,  max: 20,  level: 1, label: "Initial" }
+  - { min: 21, max: 40,  level: 2, label: "Repeatable" }
+  - { min: 41, max: 60,  level: 3, label: "Defined" }
+  - { min: 61, max: 80,  level: 4, label: "Managed" }
+  - { min: 81, max: 100, level: 5, label: "Optimized" }
+
+# Pillar weights — equal by default, configurable
+pillar_weights:
+  "Governance & Accountability": 1.0
+  "Fairness": 1.0
+  "Transparency": 1.0
+  "Privacy & Data": 1.0
+  "Safety & Security": 1.0
+  "Reliability": 1.0
+  "Human Oversight": 1.0
+  "GenAI": 1.0
+  "Training & Culture": 1.0

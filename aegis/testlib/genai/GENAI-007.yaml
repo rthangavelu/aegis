@@ -1,0 +1,30 @@
+id: GENAI-007
+name: GPAI copyright policy and training data summary published
+description: >
+  General-purpose AI (GPAI) model providers and deployers must publish a
+  copyright compliance policy and a summary of the training data used, including
+  content categories, sources and any opt-out mechanisms applied. EU AI Act
+  Art. 53 makes this mandatory for GPAI models from August 2025. Without this,
+  the organisation cannot demonstrate compliance during regulatory review.
+pillar: GenAI
+type: evidence
+severity: high
+applies_to:
+  model_type: [llm]
+mappings:
+  - framework: EU_AI_ACT
+    ref: "Art. 53"
+  - framework: NIST_AI_RMF
+    ref: "GOVERN 6.1"
+check:
+  source: "seed/documents/${system.id}_gpai_policy.md"
+  rules:
+    exists: true
+    max_age_days: 365
+    required_sections:
+      - "Copyright policy"
+      - "Training data summary"
+frequency: annually
+remediation_id: REM-GENAI-002
+owner_role: Legal
+version: 1

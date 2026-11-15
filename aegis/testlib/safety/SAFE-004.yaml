@@ -1,0 +1,31 @@
+id: SAFE-004
+name: Post-market surveillance and incident reporting process active
+description: >
+  High-risk AI systems in production must have an active post-market surveillance
+  process that monitors for unexpected behaviour, near-misses, and serious incidents.
+  Serious incidents must be reported to the relevant national authority within
+  prescribed timeframes under EU AI Act Art. 73. This check verifies that a
+  formal surveillance review has been completed within the last 90 days.
+pillar: Safety & Security
+type: process
+severity: high
+applies_to:
+  risk_tier: [high, unacceptable]
+  lifecycle_stage: [production]
+mappings:
+  - framework: EU_AI_ACT
+    ref: "Art. 72"
+  - framework: NIST_AI_RMF
+    ref: "MANAGE 4.3"
+  - framework: ISO_42001
+    ref: "Clause 9.1"
+inputs:
+  ticket_type: post_market_surveillance_review
+check:
+  source: tickets
+  ticket_type: post_market_surveillance_review
+  rule: "approval.status == 'approved'"
+frequency: quarterly
+remediation_id: REM-SAFE-001
+owner_role: Risk Officer
+version: 1

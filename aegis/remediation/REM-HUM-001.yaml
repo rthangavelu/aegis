@@ -1,0 +1,14 @@
+id: REM-HUM-001
+title: Implement human oversight controls for the AI system
+steps:
+  - "Define the decision types that require human review before communication to affected individuals."
+  - "Build a human review queue in the existing case management system."
+  - "For LLM systems: implement a visible and accessible escalation button in the user interface."
+  - "Create and maintain an override log recording all human interventions."
+  - "Re-run HUM-001, HUM-002, and HUM-003 to confirm controls are in place."
+effort: M
+owner_role: System Owner
+org_wide_fix: false
+resources:
+  - "EU AI Act Art. 14 — Human oversight measures"
+  - "NIST AI RMF GOVERN 5 playbook"

@@ -1,0 +1,26 @@
+id: REM-PRIV-002
+title: Establish data governance documentation (provenance, lawful basis, erasure)
+steps:
+  - "Data provenance (PRIV-004): for each training dataset, document its origin, collection method and
+     date range, labelling process and labeller demographics, known sampling biases, any exclusions or
+     filters applied, and the version pinned in the current model. Output: seed/documents/<id>_data_provenance.md."
+  - "Lawful basis (PRIV-005): work with the DPO to identify and record the GDPR Art. 6 lawful basis for
+     each processing activity in the AI pipeline (training, inference, logging, evaluation). Where special
+     category data is used for bias monitoring, confirm an Art. 9 condition applies. Record findings in
+     the Data Processing Agreement or a legal basis register, then re-attest PRIV-005."
+  - "Right to erasure (PRIV-006): design and document a deletion workflow covering (a) how deletion
+     requests are received and tracked, (b) which datastores hold personal data (training sets, eval sets,
+     logs, vector stores), (c) automated vs. manual deletion steps for each, (d) model retraining trigger
+     criteria, and (e) confirmation letter to the data subject. SLA target: 30 days. Re-attest PRIV-006."
+  - "Test the erasure process end-to-end using synthetic data before it handles real requests. Document
+     the test run date and outcome as evidence."
+  - "Schedule annual reviews for each document and add a calendar reminder to the DPO's work plan."
+  - "Coordinate with the ML team to ensure data versioning (DVC or equivalent) is in place so the exact
+     training dataset version is reproducible and auditable."
+effort: L
+owner_role: Data Protection Officer
+org_wide_fix: false
+resources:
+  - "GDPR Art. 6 — lawful basis; Art. 9 — special category data; Art. 17 — right to erasure"
+  - "EU AI Act Art. 10(3) — training data governance for high-risk AI"
+  - "ICO Guidance on AI and Data Protection (ico.org.uk)"

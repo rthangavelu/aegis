@@ -1,0 +1,33 @@
+id: REL-004
+name: Prediction distribution drift within acceptable bounds
+description: >
+  The distribution of model predictions must not shift significantly between
+  the baseline (training/validation period) and the current production window.
+  Measured via Population Stability Index (PSI) on the prediction column.
+  PSI < 0.1 indicates a stable model; PSI >= 0.2 indicates significant drift
+  that may require investigation and retraining.
+pillar: Reliability
+type: technical
+severity: critical
+applies_to:
+  risk_tier: [high, unacceptable]
+  lifecycle_stage: [production]
+mappings:
+  - framework: NIST_AI_RMF
+    ref: "MANAGE 4.1"
+  - framework: EU_AI_ACT
+    ref: "Art. 72"
+  - framework: ISO_42001
+    ref: "Clause 9.1"
+inputs:
+  dataset: "${system.eval_dataset}"
+check:
+  metric: prediction_drift
+  threshold:
+    pass: "< 0.1"
+    warn: "< 0.3"
+  threshold_source: "PSI thresholds: <0.1 stable, 0.1-0.2 moderate, >0.2 significant drift"
+frequency: nightly
+remediation_id: REM-REL-001
+owner_role: ML Engineer
+version: 1

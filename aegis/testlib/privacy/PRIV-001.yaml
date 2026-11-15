@@ -1,0 +1,30 @@
+id: PRIV-001
+name: Data processing agreement in place
+description: >
+  A valid data processing agreement (DPA) must exist for every AI system that
+  processes personal data. Without a DPA, the organization cannot lawfully
+  use personal data to train or run the AI system.
+pillar: Privacy & Data
+type: evidence
+severity: critical
+applies_to:
+  risk_tier: [high, limited, unacceptable]
+mappings:
+  - framework: EU_AI_ACT
+    ref: "Art. 10"
+  - framework: ISO_42001
+    ref: "Clause 8.4"
+  - framework: NIST_AI_RMF
+    ref: "GOVERN 6.1"
+check:
+  source: "seed/documents/${system.id}_dpa.md"
+  rules:
+    exists: true
+    max_age_days: 730
+    required_sections:
+      - "Data controller"
+      - "Retention"
+frequency: annually
+remediation_id: REM-PRIV-001
+owner_role: Data Protection Officer
+version: 1

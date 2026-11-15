@@ -1,0 +1,15 @@
+id: REM-GENAI-001
+title: Harden LLM safety guardrails and reduce toxicity and bias
+steps:
+  - "Fine-tune or apply RLHF to improve jailbreak and prompt injection resistance."
+  - "Add an output filter that blocks responses with toxicity score > 0.08."
+  - "Run counterfactual bias tests (swap names, genders, nationalities) and document results."
+  - "Implement RAG with retrieval quality checks to improve groundedness."
+  - "Re-run GENAI-001 through GENAI-006 to confirm all metrics meet thresholds."
+effort: L
+owner_role: ML Lead
+org_wide_fix: false
+resources:
+  - "garak — LLM vulnerability scanner: https://github.com/leondz/garak"
+  - "promptfoo — LLM red-teaming: https://www.promptfoo.dev"
+  - "NIST AI 100-1 — Adversarial Machine Learning taxonomy"

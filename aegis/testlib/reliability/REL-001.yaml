@@ -1,0 +1,30 @@
+id: REL-001
+name: Model monitoring dashboard exists and is active
+description: >
+  Every production AI system must have an active monitoring dashboard that
+  tracks input distribution drift, output distribution drift, and key
+  performance metrics. Without monitoring, degradation goes undetected.
+pillar: Reliability
+type: evidence
+severity: high
+applies_to:
+  risk_tier: [high, limited, unacceptable]
+  lifecycle_stage: [production]
+mappings:
+  - framework: NIST_AI_RMF
+    ref: "MANAGE 4.1"
+  - framework: ISO_42001
+    ref: "Clause 9.1"
+  - framework: EU_AI_ACT
+    ref: "Art. 12"
+check:
+  source: "seed/documents/${system.id}_monitoring.md"
+  rules:
+    exists: true
+    max_age_days: 90
+    required_sections:
+      - "Metrics tracked"
+frequency: monthly
+remediation_id: REM-REL-001
+owner_role: ML Engineer
+version: 1

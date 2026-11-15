@@ -1,0 +1,29 @@
+id: GOV-001
+name: Deployment approval by accountable owner
+description: >
+  Every production deployment of a high-risk AI system must have a recorded
+  approval from the designated accountable owner before the system goes live.
+  Missing approval indicates a governance control failure.
+pillar: Governance & Accountability
+type: process
+severity: critical
+applies_to:
+  risk_tier: [high, unacceptable]
+  lifecycle_stage: [production]
+mappings:
+  - framework: NIST_AI_RMF
+    ref: "GOVERN 1.1"
+  - framework: ISO_42001
+    ref: "Clause 5.3"
+  - framework: EU_AI_ACT
+    ref: "Art. 17"
+inputs:
+  source: tickets
+  ticket_type: deployment_approval
+check:
+  source: tickets
+  rule: "approval.date < deploy.date AND approval.status == 'approved'"
+frequency: on_deploy
+remediation_id: REM-GOV-001
+owner_role: AI Governance Lead
+version: 1

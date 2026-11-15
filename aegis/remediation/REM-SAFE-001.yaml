@@ -1,0 +1,14 @@
+id: REM-SAFE-001
+title: Complete security risk assessment and adversarial testing
+steps:
+  - "Conduct a threat modelling session covering data poisoning, model inversion, adversarial examples, and (for LLMs) prompt injection."
+  - "Document attack scenarios and results in the adversarial testing document."
+  - "Obtain Security Lead approval and raise a security_risk_assessment ticket."
+  - "Implement an incident response plan covering detection, containment, and notification."
+  - "Re-run SAFE-001, SAFE-002, and SAFE-003 to confirm controls are in place."
+effort: M
+owner_role: Security Lead
+org_wide_fix: false
+resources:
+  - "MITRE ATLAS — Adversarial Threat Landscape for AI Systems"
+  - "NIST AI RMF MAP 5.2 playbook"

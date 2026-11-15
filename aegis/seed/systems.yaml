@@ -1,0 +1,62 @@
+# MOCK DATA — Aegis seed AI systems
+systems:
+
+  - id: resume-screener
+    name: Resume Screener v2
+    owner: talent-team@example.com
+    business_unit: Human Resources
+    purpose: >
+      Ranks and shortlists job applicants based on resume content.
+      Outputs a binary hire/no-hire recommendation.
+    model_type: classification
+    risk_tier: high
+    lifecycle_stage: production
+    endpoint: null
+    eval_dataset: seed/datasets/resume_screener_eval.csv
+    data_sources:
+      - internal_hr_database
+    jurisdictions:
+      - EU
+      - US
+    mock: true
+
+  - id: support-chatbot
+    name: Customer Support Chatbot
+    owner: cx-team@example.com
+    business_unit: Customer Experience
+    purpose: >
+      Answers customer queries using a large language model.
+      Escalates to a human agent when confidence is low.
+    model_type: llm
+    risk_tier: limited
+    lifecycle_stage: production
+    endpoint: null
+    eval_dataset: seed/datasets/support_chatbot_eval.csv
+    data_sources:
+      - knowledge_base
+      - ticket_history
+    jurisdictions:
+      - EU
+      - US
+      - APAC
+    mock: true
+
+  - id: credit-scoring-v3
+    name: Credit Scoring Model v3
+    owner: risk-team@example.com
+    business_unit: Risk & Compliance
+    purpose: >
+      Predicts credit default probability for loan applicants.
+      Score is used to set credit limits and interest rates.
+    model_type: classification
+    risk_tier: high
+    lifecycle_stage: production
+    endpoint: null
+    eval_dataset: seed/datasets/credit_scoring_eval.csv
+    data_sources:
+      - bureau_data
+      - internal_account_history
+    jurisdictions:
+      - EU
+      - US
+    mock: true

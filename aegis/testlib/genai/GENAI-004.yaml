@@ -1,0 +1,28 @@
+id: GENAI-004
+name: Groundedness score for LLM outputs
+description: >
+  The average groundedness score measures how well LLM outputs are supported
+  by retrieved or provided context. Low groundedness indicates hallucination,
+  which misleads users and can cause harm in advisory or support contexts.
+pillar: GenAI
+type: technical
+severity: high
+applies_to:
+  model_type: [llm]
+mappings:
+  - framework: NIST_AI_RMF
+    ref: "MEASURE 2.5"
+  - framework: EU_AI_ACT
+    ref: "Art. 13"
+inputs:
+  dataset: "${system.eval_dataset}"
+check:
+  metric: groundedness_score
+  threshold:
+    pass: ">= 0.80"
+    warn: ">= 0.70"
+  threshold_source: "Organizational choice"
+frequency: nightly
+remediation_id: REM-GENAI-001
+owner_role: ML Lead
+version: 1

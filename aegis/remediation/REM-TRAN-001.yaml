@@ -1,0 +1,14 @@
+id: REM-TRAN-001
+title: Implement explainability and AI disclosure for the system
+steps:
+  - "Define what constitutes a 'meaningful explanation' for decisions made by this system."
+  - "Implement explanation output (e.g. SHAP values, feature importance, natural-language rationale)."
+  - "Add AI disclosure to all user-facing touchpoints (UI, emails, letters) before or at interaction."
+  - "Document the explainability approach in a transparency document with the required sections."
+  - "Re-run TRAN-001 and TRAN-002 to confirm the documentation exists and attestation is answered."
+effort: M
+owner_role: Product Owner
+org_wide_fix: false
+resources:
+  - "EU AI Act Art. 13 — Transparency and provision of information to deployers"
+  - "SHAP: https://shap.readthedocs.io"

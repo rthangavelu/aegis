@@ -1,0 +1,28 @@
+id: FAIR-003
+name: Model accuracy floor across protected groups
+description: >
+  The model must achieve a minimum accuracy of 0.75 overall. A lower floor
+  may indicate a system that is not reliable enough for high-risk decisions.
+pillar: Fairness
+type: technical
+severity: medium
+applies_to:
+  risk_tier: [high, unacceptable]
+  model_type: [classification]
+mappings:
+  - framework: NIST_AI_RMF
+    ref: "MEASURE 2.5"
+  - framework: ISO_42001
+    ref: "Clause 9.1"
+inputs:
+  dataset: "${system.eval_dataset}"
+check:
+  metric: accuracy_floor
+  threshold:
+    pass: ">= 0.75"
+    warn: ">= 0.60"
+  threshold_source: "Organizational choice"
+frequency: nightly
+remediation_id: REM-FAIR-003
+owner_role: ML Lead
+version: 1
