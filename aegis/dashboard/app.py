@@ -1,4 +1,4 @@
-"""Aegis Streamlit dashboard — 5 views."""
+"""Aegis Streamlit dashboard — 6 views (5 governance + repo scanner)."""
 
 from __future__ import annotations
 
@@ -17,48 +17,62 @@ from aegis.dashboard.views import (  # noqa: E402
     executive,
     inventory,
     recommendations,
+    scanner,
     test_results,
-)
-
-# MOCK DATA warning — always visible
-st.warning(
-    "⚠️ **MOCK DATA** — All systems, results and scores are simulated. "
-    "This output is an assessment, not legal or compliance advice."
 )
 
 st.title("🛡️ Aegis — AI Governance Dashboard")
 
-# Load run
-run_id = data.latest_run_id()
-if not run_id:
-    st.error(
-        "No test runs found. Run the following from the CLI first:\n\n"
-        "```\naegis seed && aegis run --all && aegis score\n```"
-    )
-    st.stop()
-
-data.ensure_scored(run_id)
-st.caption(f"Run: `{run_id}`")
-
-# 5-tab navigation
-tab_exec, tab_inv, tab_tests, tab_comp, tab_recs = st.tabs(
-    ["Executive", "Inventory", "Test Results", "Compliance", "Recommendations"]
+# 6-tab navigation — Scanner first so it's the entry point for the repo workflow
+tab_scan, tab_exec, tab_inv, tab_tests, tab_comp, tab_recs = st.tabs(
+    ["Scan Repo", "Executive", "Inventory", "Test Results", "Compliance", "Recommendations"]
 )
 
+with tab_scan:
+    scanner.render()
+
+# The other 5 tabs require a seeded test run — guard with a banner inside each tab
 with tab_exec:
-    executive.render(run_id)
+    run_id = data.latest_run_id()
+    if not run_id:
+        st.warning(
+            "No test runs found. Run `aegis seed && aegis run --all && aegis score` "
+            "or use the **Scan Repo** tab to scan a repository."
+        )
+    else:
+        data.ensure_scored(run_id)
+        st.caption(f"Run: `{run_id}`")
+        executive.render(run_id)
 
 with tab_inv:
-    inventory.render(run_id)
+    run_id = data.latest_run_id()
+    if not run_id:
+        st.warning("No test runs found. See the **Executive** tab for setup instructions.")
+    else:
+        data.ensure_scored(run_id)
+        inventory.render(run_id)
 
 with tab_tests:
-    test_results.render(run_id)
+    run_id = data.latest_run_id()
+    if not run_id:
+        st.warning("No test runs found. See the **Executive** tab for setup instructions.")
+    else:
+        test_results.render(run_id)
 
 with tab_comp:
-    compliance.render(run_id)
+    run_id = data.latest_run_id()
+    if not run_id:
+        st.warning("No test runs found. See the **Executive** tab for setup instructions.")
+    else:
+        compliance.render(run_id)
 
 with tab_recs:
-    recommendations.render(run_id)
+    run_id = data.latest_run_id()
+    if not run_id:
+        st.warning("No test runs found. See the **Executive** tab for setup instructions.")
+    else:
+        data.ensure_scored(run_id)
+        recommendations.render(run_id)
 
 st.divider()
 st.caption("Aegis v0.1 · Output is an assessment, not legal advice · © 2026 Flowwolf")

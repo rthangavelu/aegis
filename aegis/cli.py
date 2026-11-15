@@ -374,6 +374,17 @@ def recommend(
 
 
 @app.command()
+def mcp() -> None:
+    """Start the Aegis MCP server (stdio transport for Claude Code and other AI clients)."""
+    import asyncio
+
+    from aegis.mcp_server import server as _mcp_server
+
+    console.print("[bold]Aegis MCP server starting (stdio)...[/bold]")
+    asyncio.run(_mcp_server.run_stdio_async())
+
+
+@app.command()
 def dashboard() -> None:
     """Launch the Streamlit dashboard."""
     import subprocess

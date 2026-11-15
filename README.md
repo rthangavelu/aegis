@@ -1,8 +1,8 @@
 # Aegis — AI Governance Testing Agent
 
-Aegis treats AI governance like software QA. Governance and ethics requirements become executable test cases. Aegis runs them against your AI systems, scores the results into the **Aegis Index** (0–100), shows the findings on a dashboard, and turns every failure into a concrete, prioritized fix.
+Aegis treats AI governance like software QA. Governance and ethics requirements become executable test cases. Aegis runs them against your AI systems, scores the results into the **Aegis Index** (0–100), shows findings on a dashboard, and turns every failure into a concrete, prioritized fix.
 
-> **Status:** MVP v0.1 · 41 test cases · 17 remediations · Mock systems only · Output is an assessment, not legal advice.
+> **Status:** MVP v0.1 · 41 test cases · 17 remediations · AI-powered repo scanner · MCP server · Output is an assessment, not legal advice.
 
 ---
 
@@ -12,6 +12,7 @@ Aegis treats AI governance like software QA. Governance and ethics requirements 
 
 - Python 3.11+
 - [uv](https://docs.astral.sh/uv/getting-started/installation/) (`pip install uv` or `brew install uv`)
+- Anthropic API key (for repo scanner and MCP server)
 
 ### 1. Install
 
@@ -49,15 +50,13 @@ Loads three mock AI systems into a local SQLite database:
 uv run aegis run --all
 ```
 
-Executes all 41 test cases against each system in under 60 seconds with no errors.
+Executes all 41 test cases against each system in under 60 seconds.
 
 ### 5. Score
 
 ```bash
 uv run aegis score
 ```
-
-Computes the Aegis Index per pillar, per system and for the whole organisation:
 
 ```
 System               Index   Maturity   RAG
@@ -82,15 +81,70 @@ Writes `improvement_plan.md` — a prioritised remediation plan with P0 items fi
 uv run aegis dashboard
 ```
 
-Opens a Streamlit dashboard at `http://localhost:8501` with five views:
+Opens a Streamlit dashboard at `http://localhost:8501` with six views:
 
 | View | What it shows |
 |---|---|
+| **Scan Repo** | AI-powered scanner — point at any git repo and get a governance assessment |
 | **Executive** | Org Aegis Index gauge, system RAG cards, top critical/high failures |
 | **Inventory** | System × pillar heatmap (green / amber / red) |
 | **Test Results** | Per-system drill-down with status, metric values and evidence |
 | **Compliance** | Tests mapped to NIST AI RMF, ISO/IEC 42001 and EU AI Act |
 | **Recommendations** | Prioritised improvement plan with projected uplift charts |
+
+---
+
+## Scan any repo
+
+The **Scan Repo** tab (first tab in the dashboard) lets you assess any git repository without registering it in the inventory first. Claude reads the code and documentation, generates governance test cases specific to your business, executes them, and returns a scored report.
+
+```
+Repo URL or path  ──►  Extract files  ──►  Claude analyses  ──►  Generate tests  ──►  Evaluate & score
+```
+
+**Three inputs** help Claude understand your business:
+
+1. **Repository URL or local path** — `https://github.com/org/repo` or `/path/to/local/repo`
+2. **Supplementary documents** — upload PDF, DOCX, TXT or MD files (data processing agreements, model risk policies, product briefs, architecture docs)
+3. **Fetch a URL** — Confluence page, public wiki, model card URL
+4. **Business context** — paste a plain-English description of the system, user population, jurisdiction and regulatory obligations
+
+The more context you provide, the more precise the generated test cases. For example, attaching a DPA causes Claude to test for the specific data retention periods it specifies; naming the user population causes fairness tests to target the right protected groups.
+
+**Requires:** `ANTHROPIC_API_KEY` (set as env var or enter in the UI).
+
+See [doc/repo-scanner.md](doc/repo-scanner.md) for the full pipeline and tips.
+
+---
+
+## Use as an AI agent (MCP)
+
+Aegis exposes 10 tools via the Model Context Protocol so Claude Code (and any other MCP client) can run governance assessments conversationally.
+
+```bash
+uv run aegis mcp
+```
+
+Add to `~/.claude/config.json`:
+
+```json
+{
+  "mcpServers": {
+    "aegis": {
+      "command": "uv",
+      "args": ["--directory", "/path/to/aegis", "run", "aegis", "mcp"]
+    }
+  }
+}
+```
+
+Then ask Claude Code:
+
+> "Run an Aegis governance assessment on all systems and show me the failing critical tests."
+
+Available tools: `list_systems`, `seed_systems`, `run_assessment`, `get_scores`, `get_test_results`, `get_failing_tests`, `get_pillar_breakdown`, `get_recommendations`, `add_system`, `validate_library`.
+
+See [doc/mcp-server.md](doc/mcp-server.md) for the full tool reference.
 
 ---
 
@@ -109,14 +163,16 @@ Test result (pass/warn/fail)
 **RAG:** Green ≥ 80 · Amber 60–79 · Red < 60 or any critical failure  
 **Maturity:** 1 Initial · 2 Repeatable · 3 Defined · 4 Managed · 5 Optimised
 
+See [doc/scoring.md](doc/scoring.md) for the complete formula and worked example.
+
 ### Pillars
 
 | # | Pillar | Sample tests |
 |---|---|---|
 | 1 | Governance & Accountability | Deployment approval, model card, supply chain review (GOV-005) |
-| 2 | Fairness | Disparate impact (four-fifths rule), equal opportunity, FPR parity (FAIR-004) |
+| 2 | Fairness | Disparate impact (four-fifths rule), equal opportunity, predictive parity (FAIR-004) |
 | 3 | Transparency | Transparency report, model card mapping, explainability method (TRAN-004) |
-| 4 | Privacy & Data | Data protection agreement, data provenance (PRIV-004), lawful basis (PRIV-005), right to erasure (PRIV-006) |
+| 4 | Privacy & Data | DPA, data provenance (PRIV-004), lawful basis (PRIV-005), right to erasure (PRIV-006) |
 | 5 | Safety & Security | Risk assessment, adversarial testing, post-market surveillance (SAFE-004) |
 | 6 | Reliability | Accuracy floor, monitoring dashboard, prediction drift (REL-004) |
 | 7 | Human Oversight | Override log, human review attestation, appeal/recourse (HUM-004) |
@@ -138,34 +194,41 @@ Test result (pass/warn/fail)
 
 ```
 aegis/
-  cli.py                    # CLI (validate, seed, run, score, recommend, dashboard)
-  models.py                 # Pydantic + SQLModel data models
-  db.py                     # SQLite engine and session factory
-  inventory/                # AI system CRUD
+  cli.py                    CLI (validate, seed, run, score, recommend, dashboard, mcp)
+  models.py                 Pydantic + SQLModel data models
+  db.py                     SQLite engine and session factory
+  mcp_server.py             MCP server (10 tools, stdio transport)
+  inventory/                AI system CRUD
   engine/
-    loader.py               # YAML → validated test cases and remediations
-    selector.py             # applies_to matching (risk tier, model type, lifecycle)
-    executor.py             # dispatches tests, hashes evidence (SHA-256), stores results
-    runners/                # technical | evidence | process | attestation
-    checks/                 # disparate_impact, equal_opportunity, accuracy, jailbreak, pii_leak, drift, predictive_parity
-  testlib/<pillar>/         # YAML test cases (one file per test, validated against schemas/)
-  remediation/              # YAML playbooks (REM-*.yaml)
+    loader.py               YAML → validated test cases and remediations
+    selector.py             applies_to matching (risk tier, model type, lifecycle)
+    executor.py             dispatches tests, hashes evidence (SHA-256), stores results
+    runners/                technical | evidence | process | attestation
+    checks/                 7 metric functions (fairlearn, scikit-learn, mock)
+  testlib/<pillar>/         41 YAML test cases (one file per test)
+  remediation/              17 YAML playbooks (REM-*.yaml)
+  schemas/                  JSON schemas for YAML validation
   scoring/
-    engine.py               # Aegis Index computation (INTENT.md §8)
-    config.yaml             # Weights, thresholds, RAG bands, maturity bands
+    engine.py               Aegis Index computation
+    config.yaml             weights, thresholds, RAG bands, maturity bands
   recommend/
-    engine.py               # Priority scoring, tier assignment, projected uplift (INTENT.md §9)
+    engine.py               priority scoring, tier assignment, projected uplift
   dashboard/
-    app.py                  # Streamlit entry point
-    data.py                 # Cached DB queries
-    views/                  # executive, inventory, test_results, compliance, recommendations
+    app.py                  Streamlit entry point (6 tabs)
+    data.py                 cached DB queries
+    views/                  executive, inventory, test_results, compliance,
+                            recommendations, scanner
+  scan/
+    repo.py                 repo cloning, file extraction, PDF/DOCX/URL parsing
+    analyzer.py             Claude-powered analysis, test generation, evaluation, scoring
   seed/
-    systems.yaml            # 3 mock AI systems
-    datasets/               # CSV evaluation datasets
-    documents/              # Mock model cards, DPAs, monitoring reports
-    tickets.yaml            # Mock approval tickets
-    attestations.yaml       # Mock questionnaire answers
-tests/                      # pytest suite (138 tests)
+    systems.yaml            3 mock AI systems
+    datasets/               CSV evaluation datasets
+    documents/              mock model cards, DPAs, monitoring reports
+    tickets.yaml            mock approval tickets
+    attestations.yaml       mock questionnaire answers
+tests/                      138 pytest tests
+doc/                        full documentation
 ```
 
 ---
@@ -215,21 +278,20 @@ id: REM-FAIR-005
 title: Address intersectional disparate impact
 steps:
   - "Identify which attribute intersections drive the lowest selection rates."
-  - "Apply post-processing calibration (ThresholdOptimizer in fairlearn) with
-     intersectional constraints."
+  - "Apply post-processing calibration (ThresholdOptimizer in fairlearn)."
   - "Re-run FAIR-005 to confirm disparate impact ratio >= 0.9."
 effort: L
 owner_role: ML Lead
 org_wide_fix: false
-resources:
-  - "https://fairlearn.org/v0.10/user_guide/mitigation/index.html"
 ```
 
-### Add a new technical metric
+### Add a technical metric
 
-1. Create `aegis/engine/checks/<check_name>.py` with a function that accepts a `pd.DataFrame` and returns a `float`.
-2. Register it in `aegis/engine/runners/technical.py` under `_SCALAR_CHECKS` (or add an `elif` block for metrics that need extra inputs).
+1. Create `aegis/engine/checks/<metric>.py` — a function accepting a `pd.DataFrame` returning a `float`.
+2. Register it in `aegis/engine/runners/technical.py` under `_SCALAR_CHECKS`.
 3. Write tests in `tests/test_checks.py` covering pass, warn, fail and edge cases.
+
+See [doc/contributing.md](doc/contributing.md) for the full guide.
 
 ---
 
@@ -243,7 +305,8 @@ aegis run --all                     Run all tests against all systems
 aegis run --system <id>             Run tests against one system
 aegis score [--run-id <id>]         Compute Aegis Index scores
 aegis recommend [--run-id <id>]     Generate improvement plan (improvement_plan.md)
-aegis dashboard                     Launch Streamlit dashboard
+aegis dashboard                     Launch Streamlit dashboard (6 tabs)
+aegis mcp                           Start MCP server (stdio transport)
 ```
 
 ---
@@ -264,7 +327,11 @@ uv run ruff format .       # formatting
 |---|---|
 | NIST AI RMF | GOVERN 1.1–6.2, MAP 1–5, MEASURE 2.1–2.13, MANAGE 1–4 |
 | ISO/IEC 42001 | Clauses 5–10, Annex A.4–A.10 |
-| EU AI Act | Arts. 9, 10, 13, 14, 15, 17, 22, 25-28, 53, 72 |
+| EU AI Act | Arts. 9, 10, 13, 14, 15, 17, 22, 25-28, 53, 72, 74 |
+| GDPR | Arts. 6, 10, 17, 22 |
+| FCRA / ECOA | US credit decisioning |
+| HIPAA | US health data |
+| CCPA | US consumer privacy |
 
 ---
 
@@ -276,24 +343,22 @@ uv run ruff format .       # formatting
 
 ---
 
+## Documentation
+
+| Doc | Contents |
+|---|---|
+| [doc/architecture.md](doc/architecture.md) | System design, data model, data flow, two operating modes |
+| [doc/scoring.md](doc/scoring.md) | Aegis Index formula, worked example, RAG bands, maturity levels |
+| [doc/test-library.md](doc/test-library.md) | All 41 test cases, YAML schema, technical checks reference |
+| [doc/repo-scanner.md](doc/repo-scanner.md) | AI-powered scanner pipeline, supplementary docs, tips |
+| [doc/dashboard.md](doc/dashboard.md) | Dashboard user guide, tab-by-tab walkthrough |
+| [doc/mcp-server.md](doc/mcp-server.md) | MCP server setup, all 10 tools, example conversation |
+| [doc/cli.md](doc/cli.md) | Full CLI reference with flags and example output |
+| [doc/contributing.md](doc/contributing.md) | Adding tests, remediations, metrics; code conventions |
+
+---
+
 ## About
 
 Built by [Flowwolf](https://flowwolf.io) using Claude Code.  
 See `INTENT.md` for the full scope, scoring rules (§8), recommendation rules (§9) and acceptance criteria (§10).
-
----
-
-## Building with Claude Code
-
-If you are continuing to develop Aegis with Claude Code:
-
-```bash
-cd Aegis
-claude
-```
-
-Kick off a milestone with:
-
-> Read INTENT.md and CLAUDE.md. Use the aegis-builder skill. Implement M\<N\> with passing tests, then stop and summarize.
-
-Use the `aegis-test-author` skill to grow the test library and `aegis-report` to run assessments and interpret results.
