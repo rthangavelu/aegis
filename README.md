@@ -360,5 +360,5 @@ uv run ruff format .       # formatting
 
 ## About
 
-Built by [Flowwolf](https://flowwolf.io) using Claude Code.  
+Built with help of Claude Code.  
 See `INTENT.md` for the full scope, scoring rules (§8), recommendation rules (§9) and acceptance criteria (§10).
